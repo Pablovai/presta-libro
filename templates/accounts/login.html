@@ -1,0 +1,68 @@
+
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% extends 'home.html' %}
+
+
+{% load static %}
+
+
+{% block content %}
+
+<div style="margin-top: 100px;">
+    <p>
+        .
+    </p>
+</div>
+
+    {% if request.GET.command == 'verification' %}
+        <div class="container mx-auto alert-info" role="alert" style="max-width: 380px; margin-top:100px;">
+            Gracias por registrarte en <b> Presta Libro!!!</b>, te hemos enviado un mail de confirmacion a <b> [{{request.GET.email}}] </b> 
+            <br><br>
+            Si ya verificaste tu cuenta, puedes iniciar sesion<a href="{% url 'login' %}">Login</a>
+        </div>    
+        
+    {% else %}   
+
+    
+
+<section class="contact" id="contact">
+
+        <h1 class="heading"> <span>Log</span>In</h1>
+        <div class="row">
+            
+                
+
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+
+                <div class="inputBox chuni" id="div_form">
+                    <input type="email" class="form-control" placeholder="Email" name="email" >
+                </div>
+
+                <div class="inputBox chuni" id="div_form">
+                    <input type="password" class="form-control" placeholder="Password" name="password" >
+                </div>
+
+                <input type="submit" value="ingresar" class="btn">
+            </form>
+
+            
+    
+        </div>
+
+        <h1 class="heading">olvidaste tu password? has click <a href="{% url 'forgotPassword' %}">aqui</a> </h1>
+    
+    </section>
+
+    <h1 class="heading">
+        {% include 'includes/alerts.html'  %}
+    </h1>
+
+    {% endif %}
+
+
+{% endblock %}
+
+
+

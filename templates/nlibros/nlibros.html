@@ -1,0 +1,128 @@
+
+
+{% extends 'home.html' %}
+
+
+
+
+{% load static %}  
+
+
+{% block content %}
+
+
+
+<div style="margin-top: 150px;">
+    
+</div>    
+
+
+
+
+
+
+
+
+
+<section class="blogs" id="blogs">
+
+    {% if products %}
+    <div>
+
+        <h1 class="heading" id="conteo_de_libros"> {{conteo_libro | stringformat:"03d" }} <span>libros</span> encontrados</h1>
+        
+    </div>
+    <div class="box-container">
+        
+    
+            {% for base in products %}
+            <div class="box">
+            
+                <div class="image">
+                    <a href="{{ base.get_url }}"> <img id="img_list" style="width:60%;" src="{{base.photo_libro.url}}" alt=""> </a>
+                </div>
+
+                <div class="content" id="content_to">
+                    <span class="span2">Autor: {{base.autor}}</span>
+                    <a href="{{ base.get_url }}"> <p class="title" id="titulo_libro">{{base.product_name}}</p> </a>
+                    <span class="span2">Descripcion : {{base.descripcion}}</span>
+                    <a href="{{ base.get_url }}" id="btn_lista" class="btn">ver</a>
+                </div>
+            </div>
+            {% endfor %}
+
+        {% else %}
+
+        <div>
+
+            <h1 class="heading" id="conteo_de_libros">No se <span> Encontraron</span> Resultados</h1>
+            
+        </div>
+
+        {% endif %}
+    </div>
+</section>
+
+<section class="blogs" id="blogs">
+   
+ 
+    
+</section>
+
+<!--///////////////////////////////////////////////////////////////-->
+
+<div>
+    {% include 'paginator.html' %}
+</div>
+
+<div>
+    <p>.</p>
+</div>    
+
+<!--/////////////////////////////////////////////////////////////////-->   
+
+{% endblock  %}
+
+
+
+
+<style type="text/css">
+    /* Ocultar botón radio */
+    input[id^="spoiler"]{
+    display: none;
+    }
+    /* Estilo botón clicable */
+    input[id^="spoiler"] + label {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    padding: 5px 20px;
+    background: #e1a;
+    cursor: pointer;
+    }
+    /* Estilo botón cuando su INPUT está seleccionado */
+    input[id^="spoiler"]:checked + label {
+    color: #333;
+    background: #ccc;
+    }
+    /* Estilo caja SPOILER (inicialmente oculto) */
+    input[id^="spoiler"] ~ .spoiler {
+    width: 90%;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin: 10px auto 0;
+    }
+    /* Estilo caja SPOILER cuando su INPUT está seleccionado */
+    input[id^="spoiler"]:checked + label + .spoiler{
+    height: auto;
+    opacity: 1;
+    }
+    
+    </style>
+    
+    <div class="spoiler">CONTENIDO OCULTO
+        <label for="spoiler1">SPOILER</label>
+        <input type="checkbox" id="spoiler1"></input>
+    </div>
+      

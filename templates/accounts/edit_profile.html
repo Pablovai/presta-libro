@@ -1,0 +1,117 @@
+{% extends 'home.html' %}
+
+{% load static %} 
+
+{% block content %}
+
+
+<style type="text/css">
+
+    .comolabel{
+        color: aliceblue;
+        font-size: 14px;
+    }
+
+</style>
+
+<div style="margin-top: 120px;">
+
+</div>
+
+<!-- ========================= SECTION CONTENT ========================= -->
+
+<section class="review" id="review">
+    {% include 'includes/alerts.html' %}
+
+    <div class="box-container">
+    
+        <div class="box">
+    
+         <h3>Editar Perfil de Usuario</h3>
+        
+        
+
+
+              <div class="text-right">
+                  <img src="{{userprofile.profile_picture.url}}" alt="Imagen de perfil" width="100" style="border-radius:50px;"> 
+              </div><br>
+
+                
+                    <form class="" action="{% url 'edit_profile' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+
+                        <div>
+                           <label class="comolabel" >Nombre </label> 
+                            {{ user_form.first_name }} 
+                        </div>
+                        <br><br>
+
+                        <div class="inputBox chuni" id="div_form">
+                            <label class="comolabel">Apellido </label> 
+                            {{ user_form.last_name }}   
+                         </div>
+                         <br><br>
+
+                         <div class="inputBox chuni" id="div_form">
+                            <label class="comolabel">Telefono </label> 
+                            {{ user_form.phone_number }}
+                         </div>
+                         <br><br>
+                         
+
+                         <div class="inputBox chuni" id="div_form">
+                            <label class="comolabel">Direccion </label> 
+                            {{ profile_form.address_line_1 }}
+                         </div>
+                         <br><br>
+                        
+
+                         <div class="inputBox chuni" id="div_form">
+                            <label class="comolabel">Direccion </label> 
+                            {{ profile_form.address_line_2 }}
+                         </div>
+                         <br><br>
+
+                         <div class="inputBox chuni" id="div_form">
+                            <label class="comolabel">Ciudad </label> 
+                            {{ profile_form.city }}
+                         </div>
+                         <br><br>
+
+                         <div class="inputBox chuni" id="div_form">
+                            <label class="comolabel">Departamento </label> 
+                            {{ profile_form.state }}
+                         </div>
+                         <br><br>
+
+                         <div class="inputBox chuni" id="div_form">
+                            <label class="comolabel">Pais </label> 
+                            {{ profile_form.country }}            
+                         </div>
+                         <br><br>
+
+                         <div class="inputBox chuni" id="div_form">
+                            <label class="comolabel">Imagen perfil </label> 
+                           {{ profile_form.profile_picture }}
+                         </div>
+                         <br><br>
+
+
+                        <input type="submit" name="" value="Guardar" class="btn btn-primary">
+
+                    </form>
+
+            
+
+
+              </div>
+
+   
+</div>
+
+
+</section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends 'home.html' %}
+
+{% load static %}  
+
+
+{% block content %}
+
+
+
+<div style="margin-top: 150px;">
+    
+</div>    
+
+
+<div style="margin: 40px;">
+    <h1 class="heading" id="conteo_de_libros"> {{conteo_libro | stringformat:"03d" }} <span>libros</span> encontrados</h1>
+</div>    
+
+
+
+
+
+
+<!--
+<div class="galeria_uno">
+      
+    <div id="poculto">
+      <p style="color:#fff;">Las cookies son pequeños fragmentos de texto que los sitios web que visitas envían al navegador. Permiten que los sitios web recuerden información sobre tu visita, lo que puede hacer que sea más fácil volver a visitar los sitios y hacer que estos te resulten más útiles. Otras tecnologías, como los identificadores únicos que se usan para identificar un navegador, aplicación o dispositivo, los píxeles y el almacenamiento local, también se pueden usar para estos fines. Las cookies y otras tecnologías que se describen en esta página pueden usarse para los fines ya mensionados.</p>
+      
+      <a  href="#coki">cerrar</a>    
+
+    </div>
+
+    
+  </div>
+
+-->
+
+<section class="blogs" id="blogs">
+
+
+    <div class="box-container">
+
+        {% for base in libros %}
+        <div class="box">
+            
+            <div class="image">
+                <img id="img_list" style="width:60%;" src="{{base.photo_libro.url}}" alt="">
+            </div>
+            <div class="content" id="content_to">
+                <span class="span2">Autor: {{base.autor}}</span>
+                <p class="title" id="titulo_libro">{{base.nombre_libro}}</p>
+                <span class="span2">Descripcion : {{base.descripcion}}</span>
+                <a href="" id="btn_lista" class="btn">ver</a>
+                
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<section class="blogs" id="blogs">
+   
+    
+    
+</section>
+
+<!--///////////////////////////////////////////////////////////////-->
+
+<div>
+    {% include 'paginator.html' %}
+</div>
+
+<div>
+    <p>.</p>
+</div>    
+
+<!--/////////////////////////////////////////////////////////////////-->   
+
+{% endblock  %}
+
+
+
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div class="box">
+    <div class="image">
+        <a href="https://www.planetadelibros.com.ar/libros-mas-vendidos" target=blank><img src="{% static 'images/reglamento.jpg' %}" alt=""></a>
+    </div>
+    <div class="content">
+        <p class="title">planeta de Libros publico los mas vendidos de este 2022</p>
+        <span>by admin / 09 agosto, 2022</span>
+        <p>Descubre cuáles son los libros más vendidos de este año</p>
+        <a href="https://www.planetadelibros.com.ar/libros-mas-vendidos" class="btn" target=blank>Leer más</a>
+    </div>
+</div>
+
+
+<select id="dropdown" name="seleccionador" required>
+    <option value> Elija una opcion</option>
+    <option value="Moto">Moto</option>
+    <option value="auto_b1">Auto b1</option>
+    <option value="auto__b2">Auto b2</option>
+    <option value="camion">Camion</option>
+    <option value="profesional">profesional</option>
+  </select>
+
+
+ 

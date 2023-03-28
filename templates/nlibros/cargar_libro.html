@@ -1,0 +1,99 @@
+{% extends 'home.html' %}
+
+{% load static %}  
+
+
+{% block content %}
+
+<div style="margin-top: 200px;">
+    <p>.</p>
+</div>
+
+<section class="contact" id="contact">
+    <a name="contacto"></a>
+
+
+    <h1 class="heading"> <span>cargar </span> libro</h1>
+
+    <div class="row">
+
+        
+
+        <form action="{% url 'cargar_libro' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <h3></h3>
+            <div class="inputBox chuni" id="div_form">
+                <span class="fas fa-user"></span>
+                {{ form.autor }}
+            </div>
+
+            <div class="inputBox chuni">
+                <span class="fas fa-envelope"></span>
+                {{ form.product_name }}
+            </div>
+
+            <div class="inputBox chuni">
+                <span class="fas fa-comment"></span>
+                {{ form.descripcion }}
+            </div>
+
+            <div class="inputBox chuni">
+                <span class="fas fa-comment"></span>
+                {{ form.slug }}
+            </div>
+
+            <div class="inputBox chuni">
+                <span class="fas fa-comment"></span>
+                {{ form.photo_libro }}
+            </div>
+
+            <div class="inputBox chuni">
+                <span class="fas fa-comment"></span>
+                {{ form.estado_libro }}
+            </div>
+
+            <div class="inputBox chuni">
+                <span class="fas fa-comment"></span>
+                {{ form.genero_libro }}
+            </div>
+
+            <div class="inputBox chuni">
+                <span class="fas fa-comment"></span>
+                {{ form.puntuacion }}
+            </div>
+
+            <div class="inputBox chuni">
+                <span class="fas fa-comment"></span>
+                {{ form.tiempo_devolucion }}
+            </div>
+
+            <div class="inputBox chuni">
+                <span class="fas fa-comment"></span>
+                {{ form.cantidad_paginas }}
+            </div>
+
+            <div class="inputBox chuni">
+                <span class="fas fa-comment"></span>
+                {{ form.unidades_disponibles }}
+            </div>
+            
+            
+            <div class="inputBox chuni">
+                <span class="fas fa-comment"></span> 
+                {{ form.category }}
+
+            </div>
+
+            
+
+            <input type="submit" value="enviar" class="btn">
+
+            {% include 'includes/alerts.html' %}
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock  %}

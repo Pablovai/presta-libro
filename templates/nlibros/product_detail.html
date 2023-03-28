@@ -1,0 +1,201 @@
+
+{% extends 'home.html' %}
+
+
+
+
+{% load static %}  
+
+
+{% block content %}
+<div style="margin-top: 150px;">
+    
+</div>    
+
+<section class="about" id="about">
+
+    <h1 class="heading"> <span> <i>{{ single_product.product_name }} </i></span>
+    
+
+        <div class="rating-star">
+                <i class="fa fa-star{% if single_product.averageReview < 0.5 %}-o{% elif single_product.averageReview >= 0.5 and single_product.averageReview < 1 %}-half-o {% endif %}" aria-hidden="true"></i> 
+                <i class="fa fa-star{% if single_product.averageReview < 1.5 %}-o{% elif single_product.averageReview >= 1.5 and single_product.averageReview < 2 %}-half-o {% endif %}" aria-hidden="true"></i> 
+                <i class="fa fa-star{% if single_product.averageReview < 2.5 %}-o{% elif single_product.averageReview >= 2.5 and single_product.averageReview < 3 %}-half-o {% endif %}" aria-hidden="true"></i> 
+                <i class="fa fa-star{% if single_product.averageReview < 3.5 %}-o{% elif single_product.averageReview >= 3.5 and single_product.averageReview < 4 %}-half-o {% endif %}" aria-hidden="true"></i> 
+                <i class="fa fa-star{% if single_product.averageReview < 4.5 %}-o{% elif single_product.averageReview >= 4.5 and single_product.averageReview < 5 %}-half-o {% endif %}" aria-hidden="true"></i> 
+
+        </div>
+        
+    </h1>
+    
+   
+   
+
+    <div class="row">
+        <div class="imag">
+            <img style="width: 400px;" src="{{ single_product.photo_libro.url }} " alt="">
+            
+        </div>
+       
+
+        <div class="content">
+            <p><b>Autor</b>  : <i>{{ single_product.autor }}</i></p>
+            <p><b>Genero</b> : <i>{{ single_product.genero_libro  }}</i></p>
+            <p><b>Estado del libro</b> :  <i>{{ single_product.estado_libro }}</i></p>
+            <p><b>Cantidad de paginas</b> : <i>{{ single_product.cantidad_paginas }}</i></p>
+            <p><b>Unidades disponibles</b> : <i>{{ single_product.unidades_disponibles }}</i></p>
+            <p><b>Tiempo de devolucion</b> : <i>{{ single_product.tiempo_devolucion }}</i></p>
+            <p><b>Trama</b> : <i>{{ single_product.descripcion }} </i></p>
+
+            <a href="#" class="btn">Rervar libro</a>
+            <br>
+            <br>
+
+           
+        </div>
+        
+       
+
+    </div>
+
+</section>
+
+
+
+<section class="review" id="review">
+
+    <h1 class="heading"> <span> </span><i>Calificacion usuarios </i> </span>
+        <p> {{ single_product.countReview }} comentarios </p>
+     </h1>
+    
+
+
+    <div class="box-container">
+
+        <div class="box">
+           
+            <form action="{% url 'submit_review' single_product.id %}" method="post">
+            
+                {% csrf_token %}
+                <h3> Escribe Tu Comentario </h3> 
+  
+            
+              <p>Como calificarias este producto? </p> 
+             
+              <br>
+
+              <div class="rate">
+                <input type="radio" name="rating" value="5" id="rating10"><label for="rating10" title="5"></label>
+                <input type="radio" name="rating" value="4.5" id="rating9"><label for="rating9" title="4.5" class="half"></label>
+                <input type="radio" name="rating" value="4" id="rating8"><label for="rating8" title="4"></label>
+                <input type="radio" name="rating" value="3.5" id="rating7"><label for="rating7" title="3.5" class="half"></label>
+                <input type="radio" name="rating" value="3" id="rating6"><label for="rating6" title="3"></label>
+                <input type="radio" name="rating" value="2.5" id="rating5"><label for="rating5" title="2.5" class="half"></label>
+                <input type="radio" name="rating" value="2" id="rating4"><label for="rating4" title="2"></label>
+                <input type="radio" name="rating" value="1.5" id="rating3"><label for="rating3" title="1.5" class="half"></label>
+                <input type="radio" name="rating" value="1" id="rating2"><label for="rating2" title="1"></label>
+                <input type="radio" name="rating" value="0.5" id="rating1"><label for="rating1" title="0.5" class="half"></label>
+              </div>
+              <br>
+  
+              <h3>  Titulo de comentario: </h3> 
+                <input type="text" class="form-control" name="subject" value=""> 
+              <br>
+              <br>
+              <br>
+  
+               <h3> Comentario:</h3>
+                <textarea name="review" rows="4" class="form-control" ></textarea>
+                <br>
+
+            {% if user.is_authenticated %}
+                
+                <input type="submit" name="" value="Enviar Comentario" class="btn btn-primary">
+
+            {% else %}
+            <h3>para enviar comentario debes estar registrado <a href="{% url 'login' %}">Inicia sesion</a> </h3>
+
+            {% endif %}
+
+            {% include 'includes/alerts.html' %}
+
+            </form>
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<section class="review" id="review">
+
+
+    <div class="box-container">
+
+        <div class="box">
+            
+
+            <div class="rating-star">
+                <span>
+                <h1>
+                    <i class="fa fa-star{% if single_product.averageReview < 0.5 %}-o{% elif single_product.averageReview >= 0.5 and single_product.averageReview < 1 %}-half-o {% endif %}" aria-hidden="true"></i> 
+                    <i class="fa fa-star{% if single_product.averageReview < 1.5 %}-o{% elif single_product.averageReview >= 1.5 and single_product.averageReview < 2 %}-half-o {% endif %}" aria-hidden="true"></i> 
+                    <i class="fa fa-star{% if single_product.averageReview < 2.5 %}-o{% elif single_product.averageReview >= 2.5 and single_product.averageReview < 3 %}-half-o {% endif %}" aria-hidden="true"></i> 
+                    <i class="fa fa-star{% if single_product.averageReview < 3.5 %}-o{% elif single_product.averageReview >= 3.5 and single_product.averageReview < 4 %}-half-o {% endif %}" aria-hidden="true"></i> 
+                    <i class="fa fa-star{% if single_product.averageReview < 4.5 %}-o{% elif single_product.averageReview >= 4.5 and single_product.averageReview < 5 %}-half-o {% endif %}" aria-hidden="true"></i> 
+                </h1>
+                </span>
+            </div>
+
+            <h3>calificacion de usuarios</h3>
+            
+            <p>............................................................................................................</p>
+
+            {% for review in reviews %}
+           
+            <p>Usuario:  {{ review.user.full_name }} </p> 
+            
+            <p>{{ review.updated_at }}</p>
+
+            <h3>  {{ review.subject }} </h3>
+            
+            <div class="rating-star">
+                <span>
+                    <h1>
+                      <i class="fa fa-star{% if review.rating == 0.5 %}-half-o{% elif review.rating < 1 %}-o {% endif %}" aria-hidden="true"></i>
+                      <i class="fa fa-star{% if review.rating == 1.5 %}-half-o{% elif review.rating < 2 %}-o {% endif %}" aria-hidden="true"></i>
+                      <i class="fa fa-star{% if review.rating == 2.5 %}-half-o{% elif review.rating < 2 %}-o {% endif %}" aria-hidden="true"></i>
+                      <i class="fa fa-star{% if review.rating == 3.5 %}-half-o{% elif review.rating < 4 %}-o {% endif %}" aria-hidden="true"></i>
+                      <i class="fa fa-star{% if review.rating == 4.5 %}-half-o{% elif review.rating < 5 %}-o {% endif %}" aria-hidden="true"></i>
+                    </h1>
+                </span>
+            </div>
+
+            <br><br>
+            
+           
+            <h6 class="pes">{{ review.review }}</h6>
+            
+            <p>............................................................................................................</p>
+            
+
+            {% endfor %}
+        </div>
+
+
+    </div>
+
+</section>
+
+<div style="margin-top: 50px;">
+    
+</div>    
+
+
+{% endblock  %}
+
+
+
+    

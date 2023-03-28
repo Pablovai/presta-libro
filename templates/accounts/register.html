@@ -1,0 +1,83 @@
+{% extends 'home.html' %}
+
+
+{% load static %}
+
+
+{% block content %}
+
+<div style="margin-top: 100px;">
+    <p>
+        .
+    </p>
+</div>
+
+    
+
+    <section class="contact" id="contact">
+
+        <h1 class="heading"> <span>Registro </span> Usuario</h1>
+        <div class="row">
+            
+                
+
+            <form action="{% url 'register' %}" method="POST">
+                {% csrf_token %}
+
+                <div class="inputBox chuni" id="div_form">
+                    <label></label>
+                    {{ form.first_name }}
+                </div>
+
+                <div class="inputBox chuni" id="div_form">
+                    <label></label>
+                    {{ form.last_name }}
+                </div>
+
+                <div class="inputBox chuni" id="div_form">
+                    <label></label>
+                    {{ form.phone_number }}
+                </div>
+
+                <div class="inputBox chuni" id="div_form">
+                    <label></label>
+                    {{ form.email }}
+                </div>
+
+                <div class="inputBox chuni" id="div_form">
+                    <label></label>
+                    {{ form.password }}                          
+                    
+                </div>
+
+                <div class="inputBox chuni" id="div_form">
+                    <label></label>
+                    {{ form.confirm_password }}
+                                       
+                    
+                </div>
+
+                {{ form.email.errors }}  
+                {{ form.non_field_errors }}  
+
+                <input type="submit" value="Registrar" class="btn">
+            </form>
+
+            
+    
+        </div>
+    
+    </section>
+
+    <h1 class="heading">
+        {% include 'includes/alerts.html'  %}
+    </h1>
+
+    <h1 class="heading">Tienes una cuenta? <span> 
+    <a href="{% url 'login' %}">Log In</a>
+    </span> </h1>
+   
+
+
+
+{% endblock %}
